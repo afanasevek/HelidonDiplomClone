@@ -1,19 +1,21 @@
 server:
   port: 9080
 db:
-  source: "jdbc"
+  source: jdbc
   connection:
-    url:  "jdbc:postgresql://localhost:5432/helidon?useSSL=false"
-    username: "admin_helidon"
+    url:  jdbc:postgresql://localhost:5432/helidon?useSSL=false
+    username: admin_helidon
     password: 123456
   statements:
-    ping: "DO 0"
+    ping: DO 0
+    select-all-post: SELECT * FROM posts p
     select-post-bi-id: Select * From posts p where p.id = ?1
     select-all-active-posts-order-by-recent: select * From posts p where p.is_active = 1 order by p.time desc
+    insert-captcha: INSERT INTO captcha_codes (code, secret_code, time) values (?, ?, cast(? as TIMESTAMP))
 liquibase:
-  url: "jdbc:postgresql://localhost:5432/helidon?useSSL=false"
+  url: jdbc:postgresql://localhost:5432/helidon
   username: admin_helidon
   password: 123456
-  changeLogFile: db/changelog/db.changelog-master.xml
+  changeLogFile: classpath:db/changelog/db.changelog-master.xml
   driver: org.postgresql.Driver
   classpath: postgresql-42.2.16.jar

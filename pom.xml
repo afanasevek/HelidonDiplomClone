@@ -39,11 +39,6 @@
 			<version>1.10.16</version>
 		</dependency>
 		<dependency>
-			<groupId>io.helidon.security</groupId>
-			<artifactId>helidon-security</artifactId>
-			<version>2.0.2</version>
-		</dependency>
-		<dependency>
 			<groupId>io.helidon.dbclient</groupId>
 			<artifactId>helidon-dbclient</artifactId>
 			<version>2.0.2</version>
@@ -65,6 +60,14 @@
 			<artifactId>liquibase-core</artifactId>
 			<version>4.1.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.helidon.config/helidon-config-yaml -->
+		<dependency>
+			<groupId>io.helidon.config</groupId>
+			<artifactId>helidon-config-yaml</artifactId>
+			<version>2.0.2</version>
+		</dependency>
+
+
 	</dependencies>
 	<build>
 		<pluginManagement>
@@ -74,25 +77,10 @@
 					<artifactId>liquibase-maven-plugin</artifactId>
 					<version>4.1.0</version>
 					<configuration>
-						<propertyFile>${liquibase.propertyFile}</propertyFile>
+						<propertyFile>application.yaml</propertyFile>
 					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
-	<profiles>
-		<profile>
-			<id>db1</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<liquibase.url>jdbc:postgresql://localhost:5432/helidon</liquibase.url>
-				<liquibase.driver>org.postgresql.Driver</liquibase.driver>
-				<liquibase.username>admin_helidon</liquibase.username>
-				<liquibase.password>123456</liquibase.password>
-				<liquibase.changeLogFile>META-INF/db/changelog/db.changelog-master.xml</liquibase.changeLogFile>
-			</properties>
-		</profile>
-	</profiles>
 </project>
