@@ -9,4 +9,11 @@ db:
   statements:
     ping: "DO 0"
     select-post-bi-id: Select * From posts p where p.id = ?1
-    select-all-active-posts-order-by-recent: select * From posts p where p.is_active = 1 order by p.time desc     
+    select-all-active-posts-order-by-recent: select * From posts p where p.is_active = 1 order by p.time desc
+liquibase:
+  url: "jdbc:postgresql://localhost:5432/helidon?useSSL=false"
+  username: admin_helidon
+  password: 123456
+  changeLogFile: db/changelog/db.changelog-master.xml
+  driver: org.postgresql.Driver
+  classpath: postgresql-42.2.16.jar
