@@ -1,0 +1,12 @@
+server:
+  port: 9080
+db:
+  source: "jdbc"
+  connection:
+    url:  "jdbc:postgresql://localhost:5432/helidon?useSSL=false"
+    username: "admin_helidon"
+    password: 123456
+  statements:
+    ping: "DO 0"
+    select-post-bi-id: Select * From posts p where p.id = ?1
+    select-all-active-posts-order-by-recent: select * From posts p where p.is_active = 1 order by p.time desc     
